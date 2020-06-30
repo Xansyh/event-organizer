@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
@@ -18,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
+
 
 
 @NgModule({
@@ -42,6 +44,7 @@ import { TopNavComponent } from './top-nav/top-nav.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

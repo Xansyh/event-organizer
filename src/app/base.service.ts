@@ -33,7 +33,7 @@ export class BaseService {
     });
   }
 
-  SignUp(email: string, password: string): Observable<any> {
+  signUp(email: string, password: string): Observable<any> {
     try {
       const result = from(this.afAuth.createUserWithEmailAndPassword(email, password));
       window.alert("You have been successfully registered!");
@@ -45,7 +45,7 @@ export class BaseService {
     }
   }
 
-  SignIn(email: string, password: string): Observable<any> {
+  signIn(email: string, password: string): Observable<any> {
     try {
       const result = from(this.afAuth.signInWithEmailAndPassword(email, password));
       return result;
@@ -66,13 +66,14 @@ export class BaseService {
     
   }
 
-  createUser(user: string): void {
-    this.userRef.doc('users').set({
-      name: user
+  createUser(userParam: any): void {
+    this.userRef.doc(userParam.uid).set({
+      username: userParam.username,
+      email: userParam.email,
     });
   }
 
-  getUserList(): Observable<any> {
-    return this.userRef.valueChanges();   
+  getUserList(uid: string): Observable<any> {
+    return this.userRef.doc(uid).valueChanges();   
   }
 }

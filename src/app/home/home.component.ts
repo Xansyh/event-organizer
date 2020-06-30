@@ -20,12 +20,6 @@ export class HomeComponent implements OnInit {
     this.baseService.createUser('Xansyh');
   }
 
-  getUser() {
-    this.baseService.getUserList().subscribe(o => {
-      console.log(o);
-    });
-    
-    
-  }
+  
 
 }

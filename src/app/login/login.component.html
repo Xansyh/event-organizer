@@ -1,4 +1,6 @@
-<form id="login" [formGroup]="loginForm">
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content>
+  <form id="login" [formGroup]="loginForm">
     <div class="d-flex flex-column">
       <mat-form-field>
         <mat-label>E-mail</mat-label>
@@ -13,9 +15,6 @@
     </div>
     <p *ngIf="message" class="mat-caption login-fail-message">{{ message }}</p>
   </form>
-  <button mat-raised-button color="primary" (click)="onLogin()" form="login">
-    Login
-  </button>
   <!-- <div>
     <a
       class="mat-caption"
@@ -34,3 +33,10 @@
       Resend activation email
     </a>
   </div> -->
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onLogin()" form="login">
+    Login
+  </button>
+  <button mat-stroked-button color="warn" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

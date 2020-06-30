@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseService } from 'src/app/base.service';
+import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,21 +9,39 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-  email: string;
-  password: string;
+  message: string;
+  title = 'Sign Up';
+  signUpForm = this.fb.group({
+    username: this.fb.control('',  [Validators.required]),
+    email: this.fb.control('', [Validators.required]),
+    password: this.fb.control('', [Validators.required, Validators.minLength(8)]),
+  });
 
   constructor(
     private baseService: BaseService,
     private router: Router,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
   }
 
-  signUpClicked() {
-    console.log('email: '+this.email+', password: '+this.password);
-    this.baseService.SignUp(this.email, this.password);
-    // this.router.navigate(['/', 'login']);
+  onSignUp() {
+    this.signUpForm.markAllAsTouched();
+    if (this.signUpForm.valid) {
+      const params = this.signUpForm.value;
+      this.baseService.signUp(params.email, params.password).subscribe(o => {
+        console.log(o);
+        console.log(o.user.uid);
+        const userParams = {
+          username: params.username,
+          email: o.user.email,
+          uid: o.user.uid,
+        };
+        this.baseService.createUser(userParams);
+      });
+      // this.router.navigate(['/']);
+    }
   }
 
 }
