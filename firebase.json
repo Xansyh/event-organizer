@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "event-organizer",
+      "public": "dist/event-organizer",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

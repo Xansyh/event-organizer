@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "eventorganizer-70ba6": {
+      "hosting": {
+        "event-organizer": [
+          "eventorganizer-70ba6"
+        ]
+      }
+    }
+  }
+}

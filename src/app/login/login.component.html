@@ -1,0 +1,36 @@
+<form id="login" [formGroup]="loginForm">
+    <div class="d-flex flex-column">
+      <mat-form-field>
+        <mat-label>E-mail</mat-label>
+        <input formControlName="email" matInput />
+        <mat-error>Invalid username</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput type="password" />
+        <mat-error>Invalid password</mat-error>
+      </mat-form-field>
+    </div>
+    <p *ngIf="message" class="mat-caption login-fail-message">{{ message }}</p>
+  </form>
+  <button mat-raised-button color="primary" (click)="onLogin()" form="login">
+    Login
+  </button>
+  <!-- <div>
+    <a
+      class="mat-caption"
+      [routerLink]="['/', 'forgot-password']"
+      mat-dialog-close
+    >
+      Forgot password?
+    </a>
+  </div>
+  <div>
+    <a
+      class="mat-caption"
+      [routerLink]="['/', 'resend-activation']"
+      mat-dialog-close
+    >
+      Resend activation email
+    </a>
+  </div> -->
