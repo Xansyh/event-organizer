@@ -16,10 +16,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addUser() {
-    this.baseService.createUser('Xansyh');
-  }
-
-  
-
 }
