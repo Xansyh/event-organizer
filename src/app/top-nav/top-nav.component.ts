@@ -13,6 +13,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./top-nav.component.scss']
 })
 export class TopNavComponent implements OnInit {
+  loggedIn = false;
+  username = "adsdwdw";
+  accessToken = null;
 
   constructor(
     public dialog: MatDialog,
@@ -22,6 +25,13 @@ export class TopNavComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.accessToken = localStorage.getItem('accessToken');
+    if (this.accessToken) {
+      this.loggedIn = true;
+      this.username = localStorage.getItem('username');
+    } else {
+      this.loggedIn = false;
+    }
   }
 
   openLoginDialog() {
@@ -34,6 +44,10 @@ export class TopNavComponent implements OnInit {
     this.dialog.open(SignUpComponent, {
       width: '400px'
     });
+  }
+
+  signOut() {
+    this.baseService.signOut();
   }
 
 }

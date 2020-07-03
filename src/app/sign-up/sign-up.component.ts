@@ -34,9 +34,10 @@ export class SignUpComponent implements OnInit {
         console.log(o);
         console.log(o.user.uid);
         const userParams = {
+          uid: o.user.uid,
           username: params.username,
           email: o.user.email,
-          uid: o.user.uid,
+          role: "MEMBER",
         };
         this.baseService.createUser(userParams);
       });

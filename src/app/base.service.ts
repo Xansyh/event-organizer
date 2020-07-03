@@ -6,12 +6,15 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { Observable, of, from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { tap, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BaseService {
+  accessToken = null;
+  username = null;
+  role = null;
   user$: Observable<any>;
   userRef: any;
 
@@ -58,11 +61,17 @@ export class BaseService {
   }
 
   async signOut() {
-    this.afAuth.signOut().then(o => {
-      console.log('log out successful');
-    }).catch(function(error) {
-      console.log(error);
-    });
+    this.accessToken = null
+    this.role = null
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('username');
+    localStorage.removeItem('role');
+    window.location.reload();
+    // this.afAuth.signOut().then(o => {
+    //   console.log('log out successful');
+    // }).catch(function(error) {
+    //   console.log(error);
+    // });
     
   }
 
@@ -70,10 +79,21 @@ export class BaseService {
     this.userRef.doc(userParam.uid).set({
       username: userParam.username,
       email: userParam.email,
+      role: userParam.role,
     });
   }
 
   getUserList(uid: string): Observable<any> {
-    return this.userRef.doc(uid).valueChanges();   
+    return this.userRef.doc(uid).valueChanges();
+  }
+
+  storeUser(params: any): void {
+    this.accessToken = params.uid
+    this.username = params.username
+    this.role = params.role
+    localStorage.setItem('accessToken', this.accessToken);
+    localStorage.setItem('username', this.username);
+    localStorage.setItem('role', this.role);
+    window.location.reload();
   }
 }

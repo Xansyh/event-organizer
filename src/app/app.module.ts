@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon'
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
@@ -19,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
+import { EventBoardComponent } from './event-board/event-board.component';
 
 
 
@@ -30,7 +33,8 @@ import { TopNavComponent } from './top-nav/top-nav.component';
     HomeComponent,
     FooterComponent,
     SideNavComponent,
-    TopNavComponent
+    TopNavComponent,
+    EventBoardComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,8 @@ import { TopNavComponent } from './top-nav/top-nav.component';
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
+    MatIconModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -44,6 +44,12 @@ export class LoginComponent implements OnInit {
   getUser(uid: string) {
     this.baseService.getUserList(uid).subscribe(o => {
       console.log(o);
+      let params = {
+        uid: uid,
+        username: o.username,
+        role: o.role,
+      }
+      this.baseService.storeUser(params);
     });
   }
 
