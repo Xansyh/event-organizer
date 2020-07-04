@@ -7,7 +7,7 @@ import { BaseService } from 'src/app/base.service';
   styleUrls: ['./event-board.component.scss']
 })
 export class EventBoardComponent implements OnInit {
-  
+  events = [];
   constructor(
     private baseService: BaseService,
   ) { }
@@ -26,7 +26,7 @@ export class EventBoardComponent implements OnInit {
           })
         }
       });
-      
+      this.events = events;
     });
   }
 

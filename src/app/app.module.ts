@@ -24,6 +24,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { EventBoardComponent } from './event-board/event-board.component';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { SimpleEventCardComponent } from './simple-event-card/simple-event-card.component';
 
 
 
@@ -37,7 +38,8 @@ import { CreateEventComponent } from './create-event/create-event.component';
     SideNavComponent,
     TopNavComponent,
     EventBoardComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    SimpleEventCardComponent
   ],
   imports: [
     BrowserModule,

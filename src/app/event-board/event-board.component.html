@@ -1,31 +1,11 @@
 <div class="row">
-    <div class="col-12 col-sm-6 col-md-4 my-2">
-        <mat-card>
-            <p>FaFaEvent.com.my</p>
-            <p>FaFaEvent.com.my is an online ticketing and event management platform that helps you buy and sell,
-                manage and check-in tickets for your event at ease.</p>
-            <p>Ticket, Admission, Seating Chart, Registration, Check-In, QR Scan, Event Kiosk,
-                Facial Recognition, REPC Solution, Lucky Draw System and more.</p>
-        </mat-card>
+    <div *ngFor="let event of events" class="col-12 col-sm-6 col-md-4 my-2">
+        <app-simple-event-card 
+            [eventId]="event.eventId"
+            [title]="event.title"
+            [price]="event.price"
+            [date]="event.date"
+            [imgUrl]="event.imgUrl"
+        ></app-simple-event-card>
     </div>
-    <div class="col-12 col-sm-6 col-md-4 my-2">
-        <mat-card>
-            <p>FaFaEvent.com.my</p>
-            <p>FaFaEvent.com.my is an online ticketing and event management platform that helps you buy and sell,
-                manage and check-in tickets for your event at ease.</p>
-            <p>Ticket, Admission, Seating Chart, Registration, Check-In, QR Scan, Event Kiosk,
-                Facial Recognition, REPC Solution, Lucky Draw System and more.</p>
-        </mat-card>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 my-2">
-        <mat-card>
-            <p>FaFaEvent.com.my</p>
-            <p>FaFaEvent.com.my is an online ticketing and event management platform that helps you buy and sell,
-                manage and check-in tickets for your event at ease.</p>
-            <p>Ticket, Admission, Seating Chart, Registration, Check-In, QR Scan, Event Kiosk,
-                Facial Recognition, REPC Solution, Lucky Draw System and more.</p>
-        </mat-card>
-    </div>
-
-
 </div>

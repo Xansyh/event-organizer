@@ -22,8 +22,7 @@
                                 </mat-form-field>
                                 <mat-form-field>
                                     <mat-label>Price</mat-label>
-                                    <input formControlName="price" matInput type="number"
-                                        (change)="enableButton()" />
+                                    <input formControlName="price" matInput type="number" (change)="enableButton()" />
                                     <mat-error>Invalid price</mat-error>
                                 </mat-form-field>
                             </div>
@@ -31,20 +30,41 @@
                     </div>
                     <div class="col-6">
                         <input type="file" (change)="setImage($event)">
-                        <img class="my-2" [src]="imgURL" style="height: 400px;">
+                        <img class="imgUpload my-2" [src]="imgURL">
                     </div>
                 </div>
                 <div>
-                    <button mat-raised-button [disabled]="disabled" (click)="uploadEvent()" matStepperNext>Continue</button>
+                    <button mat-raised-button [disabled]="disabled" matStepperNext>Continue</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Preview</ng-template>
+                <div class="row">
+                    <div class="col-12">
+                        Event Preview
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 my-2">
+                        <app-simple-event-card 
+                        [eventId]="params.eventId" 
+                        [title]="params.title" 
+                        [price]="params.price"
+                        [date]="params.date" 
+                        [imgUrl]="imgURL">
+                    </app-simple-event-card>
+                    </div>
+                </div>
+                <div>
+                    <button mat-raised-button matStepperPrevious>Back</button>
+                    <button mat-raised-button color="primary" (click)="uploadEvent()" matStepperNext>Confirm</button>
                 </div>
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>Done</ng-template>
                 <div class="row">
                     <div class="col-12">
-                        Preview
+                        Please wait while the details are being uploaded.
                     </div>
-                    
+
                 </div>
                 <div>
                     <button mat-raised-button matStepperPrevious>Back</button>

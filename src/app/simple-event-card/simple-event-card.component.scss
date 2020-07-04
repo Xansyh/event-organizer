@@ -1,0 +1,18 @@
+.background {
+    position: relative;
+    background-size: contain;
+    background-position: center;
+    height: 300px;
+    cursor: pointer;
+}
+
+.infoBackground {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba($color: #ffffff, $alpha: 0.3);
+}
+
+mat-card {
+    padding: 0;
+}
