@@ -1,6 +1,8 @@
+import { timer } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { BaseService } from 'src/app/base.service';
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,6 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private baseService: BaseService,
     private router: Router,
+    public dialogRef: MatDialogRef<LoginComponent>,
     private fb: FormBuilder,
   ) { }
 
@@ -33,6 +36,14 @@ export class LoginComponent implements OnInit {
         console.log(o.user.uid);
         this.getUser(o.user.uid);
       });
+      // timer(1000).subscribe(() => {
+      //   window.scroll({
+      //     top: 0,
+      //     left: 0,
+      //     behavior: 'smooth'
+      //   });
+      // });
+      // this.dialogRef.close(true);
       // this.router.navigate(['/']);
     }
   }
@@ -44,12 +55,9 @@ export class LoginComponent implements OnInit {
   getUser(uid: string) {
     this.baseService.getUserList(uid).subscribe(o => {
       console.log(o);
-      let params = {
-        uid: uid,
-        username: o.username,
-        role: o.role,
+      if (o) {
+        window.location.reload();
       }
-      this.baseService.storeUser(params);
     });
   }
 

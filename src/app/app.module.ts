@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon'
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
@@ -22,6 +23,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { EventBoardComponent } from './event-board/event-board.component';
+import { CreateEventComponent } from './create-event/create-event.component';
 
 
 
@@ -34,7 +36,8 @@ import { EventBoardComponent } from './event-board/event-board.component';
     FooterComponent,
     SideNavComponent,
     TopNavComponent,
-    EventBoardComponent
+    EventBoardComponent,
+    CreateEventComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { EventBoardComponent } from './event-board/event-board.component';
     MatDialogModule,
     MatIconModule,
     MatCardModule,
+    MatStepperModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

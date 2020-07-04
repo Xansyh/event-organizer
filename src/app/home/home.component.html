@@ -18,21 +18,24 @@
         </mat-card>
     </div>
 </div>
-<div class="row justify-content-center py-2">
-    <mat-card class="col-11 col-lg-8 text-center">
-        <p class="mat-display-1">FaFaEvent.com.my</p>
-        <p>FaFaEvent.com.my is an online ticketing and event management platform that helps you buy and sell,
-            manage and check-in tickets for your event at ease.</p>
-        <p>Ticket, Admission, Seating Chart, Registration, Check-In, QR Scan, Event Kiosk,
-            Facial Recognition, REPC Solution, Lucky Draw System and more.</p>
-    </mat-card>
-    <div class="col-11 col-lg-8 py-5 px-0">
+<div class="row justify-content-center">
+    <div class="col-11 col-lg-8 py-2 text-center">
+        <mat-card>
+            <p class="mat-display-1">FaFaEvent.com.my</p>
+            <p>FaFaEvent.com.my is an online ticketing and event management platform that helps you buy and sell,
+                manage and check-in tickets for your event at ease.</p>
+            <p>Ticket, Admission, Seating Chart, Registration, Check-In, QR Scan, Event Kiosk,
+                Facial Recognition, REPC Solution, Lucky Draw System and more.</p>
+        </mat-card>
+    </div>
+    <div class="col-11 col-lg-8 py-2 px-0">
         <app-event-board></app-event-board>
     </div>
-    <div class="col-11 col-lg-8 py-5">
+    <div class="col-11 col-lg-8 py-5" style="background-color: rgb(190, 190, 190);">
         <div class="row justify-content-center">
-            <p class="mat-headline text-center col-12">Are you hosting a Concert, Seminar or Sports Event? We can help!</p>
-            <button mat-raised-button color="primary">Create event now</button>
+            <p class="mat-headline text-center col-12">Are you hosting a Concert, Seminar or Sports Event? We can help!
+            </p>
+            <button mat-raised-button color="primary" routerLink="/create-event">Create event now</button>
         </div>
     </div>
 </div>

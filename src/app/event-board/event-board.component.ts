@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseService } from 'src/app/base.service';
 
 @Component({
   selector: 'app-event-board',
@@ -6,10 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event-board.component.scss']
 })
 export class EventBoardComponent implements OnInit {
-
-  constructor() { }
+  
+  constructor(
+    private baseService: BaseService,
+  ) { }
 
   ngOnInit(): void {
+    this.baseService.getFeaturedEvents().subscribe(events => {
+      console.log(events);
+      events.forEach(event => {
+        if (event.imgUrl == null) {
+          this.baseService.getStorageImage(event.eventId).subscribe(imgUrl => {
+            const params = {
+              eventId: event.eventId,
+              imgUrl: imgUrl,
+            }
+            this.baseService.updateEvent(params);
+          })
+        }
+      });
+      
+    });
   }
+
+  
 
 }

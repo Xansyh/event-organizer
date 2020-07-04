@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { v4 as uuid } from 'uuid';
 
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 import { Observable, of, from } from 'rxjs';
 import { tap, switchMap } from 'rxjs/operators';
@@ -16,14 +18,17 @@ export class BaseService {
   username = null;
   role = null;
   user$: Observable<any>;
-  userRef: any;
+  userRef: AngularFirestoreCollection;
+  featuredEventRef: AngularFirestoreCollection;
 
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router
+    private afStorage: AngularFireStorage,
+    private router: Router,
   ) {
     this.userRef = afs.collection('user');
+    this.featuredEventRef = afs.collection('featuredEvents');
   }
 
   async googleSignIn() {
@@ -31,7 +36,7 @@ export class BaseService {
     var result: any;
     await this.afAuth.signInWithPopup(provider).then(o => {
       console.log(o);
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.log(error);
     });
   }
@@ -72,7 +77,7 @@ export class BaseService {
     // }).catch(function(error) {
     //   console.log(error);
     // });
-    
+
   }
 
   createUser(userParam: any): void {
@@ -84,16 +89,52 @@ export class BaseService {
   }
 
   getUserList(uid: string): Observable<any> {
-    return this.userRef.doc(uid).valueChanges();
+    return this.userRef.doc(uid).valueChanges().pipe(
+      tap((o: any) => {
+        if (o) {
+          this.accessToken = o.uid
+          this.username = o.username
+          this.role = o.role
+          localStorage.setItem('accessToken', this.accessToken);
+          localStorage.setItem('username', this.username);
+          localStorage.setItem('role', this.role);
+        }
+      })
+    );
   }
 
-  storeUser(params: any): void {
-    this.accessToken = params.uid
-    this.username = params.username
-    this.role = params.role
-    localStorage.setItem('accessToken', this.accessToken);
-    localStorage.setItem('username', this.username);
-    localStorage.setItem('role', this.role);
-    window.location.reload();
+  uploadEvent(params: any) {
+    const eventId = uuid();
+    const filePath = 'event-images/' + eventId + "/image0";
+    const ref = this.afStorage.ref(filePath);
+    const task = ref.put(params.image);
+    this.featuredEventRef.doc(eventId).set({
+      title: params.title,
+      date: params.date,
+      price: params.price,
+      eventId: eventId,
+      imgUrl: null,
+    });
   }
+
+  updateEvent(params: any) {
+    this.featuredEventRef.doc(params.eventId).update({
+      imgUrl: params.imgUrl,
+    });
+  }
+
+  getFeaturedEvents(): Observable<any>{
+    return this.featuredEventRef.valueChanges();
+  }
+
+  getStorageImage(code: string): Observable<any> {
+    let ref = this.afStorage.ref("event-images/" + code + "/image0");
+    return ref.getDownloadURL();
+  }
+
+  getStorage(code: string): Observable<any> {
+    let ref = this.afStorage.ref("event-images/" + code + "/image0");
+    return ref.getDownloadURL();
+  }
+
 }

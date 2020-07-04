@@ -1,0 +1,59 @@
+<div class="container row py-5">
+    <div class="col-12">
+        <p class="mat-display-1">Create a new event</p>
+    </div>
+    <div class="col-12">
+        <mat-horizontal-stepper linear=true #stepper>
+            <mat-step>
+                <ng-template matStepLabel>Event details</ng-template>
+                <div class="row">
+                    <div class="col-6">
+                        <form id="upload" [formGroup]="uploadEventForm">
+                            <div class="d-flex flex-column">
+                                <mat-form-field>
+                                    <mat-label>Event title</mat-label>
+                                    <input formControlName="title" matInput (change)="enableButton()" />
+                                    <mat-error>Invalid title</mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Event date</mat-label>
+                                    <input formControlName="date" matInput (change)="enableButton()" />
+                                    <mat-error>Invalid date</mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Price</mat-label>
+                                    <input formControlName="price" matInput type="number"
+                                        (change)="enableButton()" />
+                                    <mat-error>Invalid price</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-6">
+                        <input type="file" (change)="setImage($event)">
+                        <img class="my-2" [src]="imgURL" style="height: 400px;">
+                    </div>
+                </div>
+                <div>
+                    <button mat-raised-button [disabled]="disabled" (click)="uploadEvent()" matStepperNext>Continue</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <div class="row">
+                    <div class="col-12">
+                        Preview
+                    </div>
+                    
+                </div>
+                <div>
+                    <button mat-raised-button matStepperPrevious>Back</button>
+                    <button mat-raised-button color="primary" (click)="refresh()">Done</button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+    <div class="col-12">
+        <button mat-raised-button (click)="getEvent()">Get</button>
+    </div>
+</div>

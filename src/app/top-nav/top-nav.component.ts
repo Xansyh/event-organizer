@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 })
 export class TopNavComponent implements OnInit {
   loggedIn = false;
-  username = "adsdwdw";
+  username = "";
   accessToken = null;
 
   constructor(
